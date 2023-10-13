@@ -1,36 +1,60 @@
-body {
-  font-family: Arial, sans-serif;
-}
-
-.container {
+#slider-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
+}
+
+.slide {
+  display: none;
+  width: 100%;
   text-align: center;
-  max-width: 25rem;
+  padding: 20px;
 }
 
-h1 {
-  color: #333;
-  margin: 1.2rem;
+.slide img {
+  max-width: 100%;
+  height: auto;
 }
 
-.input-field {
-  width: 20rem;
-  padding: 0.6rem;
-  margin: 0.5rem 0;
+.slide h2 {
+  font-size: 24px;
 }
 
-#add-field,
-#remove-field {
+.slide p {
+  font-size: 16px;
+}
+
+#slider-controls {
+  text-align: center;
+  margin-top: 10px;
+}
+
+#prev-slide,
+#next-slide {
+  background-color: #333;
+  color: #fff;
   padding: 10px 20px;
-  background-color: dodgerblue;
-  margin: 0.9rem;
-  align-items: center;
-  color: white;
+  margin: 5px;
+  cursor: pointer;
   border: none;
+}
+
+#slider-dots {
+  text-align: center;
+}
+
+[data-slide] {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #333;
+  border-radius: 50%;
+  margin: 0 5px;
   cursor: pointer;
 }
 
-#results {
-  text-align: left;
-  margin-top: 20px;
+[data-slide].active {
+  background-color: #ff5733; /* Kolor aktywnego punktu */
 }

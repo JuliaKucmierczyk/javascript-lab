@@ -3,26 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JavaScript Lab</title>
+    <title>Slider</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>Kalkulator Statystyczny</h1>
-      <button id="add-field">Dodaj pole</button>
-      <button id="remove-field">Usuń ostatnie pole</button>
-      <div id="fields-container">
-        <input type="number" class="input-field" />
-        <input type="number" class="input-field" />
-        <input type="number" class="input-field" />
+    <div id="slider-container">
+      <div class="slide" data-type="image">
+        <img src="http://picsum.photos/seed/picsum/600/400" alt="Slide 1" />
       </div>
-      <div id="results">
-        <p>Suma: <span id="sum">0</span></p>
-        <p>Średnia: <span id="average">0</span></p>
-        <p>Minimum: <span id="min">0</span></p>
-        <p>Maksimum: <span id="max">0</span></p>
+      <div class="slide" data-type="text">
+        <h2>Slide 2</h2>
+        <p>This is a text slide.</p>
+      </div>
+      <div class="slide" data-type="video">
+        <video controls>
+          <source src="video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
-    <script src="script.js"></script>
+    <div id="slider-controls">
+      <button id="prev-slide">Poprzedni</button>
+      <button id="next-slide">Następny</button>
+    </div>
+    <div id="slider-dots">
+      <span data-slide="1"></span>
+      <span data-slide="2"></span>
+      <span data-slide="3"></span>
+    </div>
+    <script src="main.js"></script>
   </body>
 </html>
