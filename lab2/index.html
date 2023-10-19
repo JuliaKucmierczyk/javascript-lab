@@ -1,36 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- Website - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
     <title>Slider</title>
     <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <div id="slider-container">
-      <div class="slide" data-type="image">
-        <img src="http://picsum.photos/seed/picsum/600/400" alt="Slide 1" />
+    <section class="container">
+      <div class="slider">
+        <div><button class="btn previous">«</button></div>
+        <div>
+          <div class="slides">
+            <figure class="slide">
+              <img
+                class="photo"
+                src="https://picsum.photos/1920/1080?1"
+                alt=""
+              />
+            </figure>
+            <figure class="slide">
+              <img
+                class="photo"
+                src="https://picsum.photos/1920/1080?2"
+                alt=""
+              />
+            </figure>
+            <figure class="slide">
+              <img
+                class="photo"
+                src="https://picsum.photos/1920/1080?3"
+                alt=""
+              />
+            </figure>
+          </div>
+          <div class="dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+        <div><button class="btn next">»</button></div>
       </div>
-      <div class="slide" data-type="text">
-        <h2>Slide 2</h2>
-        <p>This is a text slide.</p>
-      </div>
-      <div class="slide" data-type="video">
-        <video controls>
-          <source src="video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    </div>
-    <div id="slider-controls">
-      <button id="prev-slide">Poprzedni</button>
-      <button id="next-slide">Następny</button>
-    </div>
-    <div id="slider-dots">
-      <span data-slide="1"></span>
-      <span data-slide="2"></span>
-      <span data-slide="3"></span>
-    </div>
-    <script src="main.js"></script>
+    </section>
+
+    <script src="main.js" defer></script>
   </body>
 </html>
+s
