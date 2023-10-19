@@ -1,60 +1,105 @@
-#slider-container {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: "Arial", sans-serif; /* Dodano czcionkę dla lepszej czytelności */
+  background-color: #f4f4f4; /* Lekko szary tło dla kontrastu */
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #ffffff;
+}
+
+.slider {
   position: relative;
-  overflow: hidden;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40rem;
 }
 
 .slide {
-  display: none;
+  overflow: hidden;
   width: 100%;
-  text-align: center;
-  padding: 20px;
+  flex: 1 0 100%;
+  transition: transform 300ms;
+  border-radius: 25px;
 }
 
-.slide img {
-  max-width: 100%;
-  height: auto;
+.slides {
+  display: flex;
+  overflow: hidden;
+  border-radius: 25px;
 }
 
-.slide h2 {
-  font-size: 24px;
+.photo {
+  object-fit: cover;
+  width: 100%;
+  aspect-ratio: 16/9;
+  height: 100%;
 }
 
-.slide p {
-  font-size: 16px;
-}
-
-#slider-controls {
-  text-align: center;
-  margin-top: 10px;
-}
-
-#prev-slide,
-#next-slide {
-  background-color: #333;
+.btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
-  padding: 10px 20px;
-  margin: 5px;
-  cursor: pointer;
   border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10;
 }
 
-#slider-dots {
-  text-align: center;
+.btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
-[data-slide] {
-  display: inline-block;
-  width: 10px;
+.previous {
+  left: -40px;
+}
+
+.next {
+  right: -40px;
+}
+
+.dots {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+}
+
+.dot {
+  background-color: rgb(128, 128, 128);
+  border-radius: 100%;
   height: 10px;
-  background-color: #333;
-  border-radius: 50%;
+  width: 10px;
   margin: 0 5px;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
-[data-slide].active {
-  background-color: #ff5733; /* Kolor aktywnego punktu */
+.dot:hover {
+  background-color: dodgerblue;
+}
+
+.dot.active {
+  background-color: dodgerblue;
+}
+
+@media screen and (max-width: 768px) {
+  .slider {
+    width: 25rem;
+  }
 }
