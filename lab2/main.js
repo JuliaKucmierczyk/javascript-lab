@@ -1,57 +1,59 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const slides = document.querySelectorAll(".slide");
-  const prevButton = document.getElementById("prev-slide");
-  const nextButton = document.getElementById("next-slide");
-  const dots = document.querySelectorAll("[data-slide]");
-  let currentSlideIndex = 0;
+const leftArrow = document.querySelector(".previous");
+const rightArrow = document.querySelector(".next");
+const slider = document.querySelector(".slider");
+const images = [...document.querySelectorAll(".slide")];
+const dots = [...document.querySelectorAll(".dot")];
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.style.display = i === index ? "block" : "none";
-    });
-  }
+let currentImage = 0;
+let paused = false;
 
-  function updateDots(index) {
-    dots.forEach((dot, i) => {
-      dot.classList.toggle("active", i === index);
-    });
-  }
+leftArrow.addEventListener("click", () => moveLeft());
+rightArrow.addEventListener("click", () => moveRight());
 
-  function goToSlide(index) {
-    currentSlideIndex = index;
-    showSlide(currentSlideIndex);
-    updateDots(currentSlideIndex);
-  }
-
-  function nextSlide() {
-    if (currentSlideIndex < slides.length - 1) {
-      currentSlideIndex++;
-    } else {
-      currentSlideIndex = 0;
-    }
-    goToSlide(currentSlideIndex);
-  }
-
-  function prevSlide() {
-    if (currentSlideIndex > 0) {
-      currentSlideIndex--;
-    } else {
-      currentSlideIndex = slides.length - 1;
-    }
-    goToSlide(currentSlideIndex);
-  }
-
-  prevButton.addEventListener("click", prevSlide);
-  nextButton.addEventListener("click", nextSlide);
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-      goToSlide(index);
-    });
+dots.forEach((dot, index) => {
+  dot.addEventListener("click", () => {
+    currentImage = index;
+    updateSlides();
+    updateDots();
   });
-
-  // Automatycznie rozpocznij od pierwszego slajdu
-  goToSlide(0);
-
-  // Możesz dodać tutaj obsługę pauzowania/wznowienia, efekty kenburns itp.
 });
+
+slider.addEventListener("mouseenter", () => (paused = true));
+slider.addEventListener("mouseleave", () => (paused = false));
+
+function moveRight() {
+  currentImage++;
+  if (currentImage > images.length - 1) {
+    currentImage = 0;
+  }
+  for (let i = 0; i < images.length; i++) {
+    images[i].style.transform = `translateX(${currentImage * -100}%)`;
+  }
+  updateSlides();
+  updateDots();
+}
+
+function moveLeft() {
+  currentImage--;
+  if (currentImage < 0) {
+    currentImage = images.length - 1;
+  }
+  for (let i = 0; i < images.length; i++) {
+    images[i].style.transform = `translateX(${currentImage * -100}%)`;
+  }
+  updateSlides();
+  updateDots();
+}
+
+function updateSlides() {
+  for (let i = 0; i < images.length; i++) {
+    images[i].style.transform = `translateX(${currentImage * -100}%)`;
+  }
+}
+
+function updateDots() {
+  dots.forEach((dot) => dot.classList.remove("active"));
+  dots[currentImage].classList.add("active");
+}
+
+setInterval(() => !paused && moveRight(), 4000);
