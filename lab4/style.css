@@ -1,0 +1,130 @@
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  box-sizing: border-box;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  box-sizing: border-box;
+}
+
+.noteForm {
+  max-width: 40rem;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.notesContainer {
+  max-width: 41rem;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.delete-btn,
+.pin-btn {
+  cursor: pointer;
+  padding: 5px;
+  border: none;
+  background-color: transparent;
+  font-size: 12px;
+  color: #595959;
+  transition: color 0.2s ease-in-out;
+}
+
+.delete-btn:hover,
+.pin-btn:hover {
+  color: #000000;
+}
+
+.searchResults {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#addNoteForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.note {
+  width: 12rem;
+  height: 10rem;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin: 1rem 0;
+  transition: transform 0.2s ease-in-out;
+  overflow: hidden;
+}
+
+.noteProperty {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.noteProperty label {
+  font-size: 12px;
+  color: #777;
+  border: none;
+  background-color: transparent;
+}
+
+.groupProperty {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  border-radius: 1rem;
+  background-color: tomato;
+  color: #fff;
+  transition: 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #ffbb00;
+}
+
+.searchBar {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+h3 {
+  margin: 0 0 10px 0;
+  padding: 0;
+  font-size: 1.5rem;
+}
