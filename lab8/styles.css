@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: medium;
+}
+
+#addCity {
+  background-color: dodgerblue;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+}
+
+#cityInput {
+  padding: 0.5rem 2rem;
+  border: none;
+  margin-right: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+#weatherApp {
+  text-align: center;
+  padding: 20px;
+}
+
+#weatherContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 2rem;
+}
+
+.weatherCard {
+  margin-bottom: 10px;
+  padding: 2rem;
+  margin: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.8s;
+}
+
+.weatherCard:hover {
+  transform: scale(1.1);
+}
