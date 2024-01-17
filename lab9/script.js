@@ -1,67 +1,86 @@
-const canvas = document.createElement("canvas");
+const canvas = document.getElementById("particleCanvas");
 const ctx = canvas.getContext("2d");
-document.body.appendChild(canvas);
+
+const particles = [];
+const numParticles = 10;
+const minDistance = 50;
+const repulsionForce = 2;
+const attractionForce = 0.06;
+const initialVelocityMultiplier = 0.1;
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const particles = [];
-const particleCount = 100;
-const maxSpeed = 2;
-const minDistance = 100;
+function Particle(x, y, radius) {
+  this.x = x;
+  this.y = y;
+  this.radius = radius;
+  this.velocity = {
+    x: (Math.random() * 10 - 1) * initialVelocityMultiplier,
+    y: (Math.random() * 10 - 1) * initialVelocityMultiplier,
+  };
+}
 
-class Particle {
-  constructor(x, y, speedX, speedY) {
-    this.x = x;
-    this.y = y;
-    this.speedX = speedX;
-    this.speedY = speedY;
+function start() {
+  for (let i = 0; i < numParticles; i++) {
+    particles.push(
+      new Particle(
+        Math.random() * canvas.width,
+        Math.random() * canvas.height,
+        10
+      )
+    );
   }
+  animate();
+}
 
-  update() {
-    this.x += this.speedX;
-    this.y += this.speedY;
+function reset() {
+  particles.length = 0;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
 
-    if (this.x <= 0 || this.x >= canvas.width) {
-      this.speedX *= -1;
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach((particle) => {
+    particle.x += particle.velocity.x;
+    particle.y += particle.velocity.y;
+
+    // Odbijanie się od ścianek
+    if (
+      particle.x - particle.radius < 0 ||
+      particle.x + particle.radius > canvas.width
+    ) {
+      particle.velocity.x *= -0.1;
+    }
+    if (
+      particle.y - particle.radius < 0 ||
+      particle.y + particle.radius > canvas.height
+    ) {
+      particle.velocity.y *= -0.1;
     }
 
-    if (this.y <= 0 || this.y >= canvas.height) {
-      this.speedY *= -1;
-    }
-  }
+    // Przyciąganie
+    const dx = mouseX - particle.x;
+    const dy = mouseY - particle.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
 
-  draw() {
+    if (distance > 1) {
+      const accelerationX = (dx / distance) * attractionForce;
+      const accelerationY = (dy / distance) * attractionForce;
+
+      particle.velocity.x += accelerationX;
+      particle.velocity.y += accelerationY;
+    }
+
+    // Rysowanie kuleczek
     ctx.beginPath();
-    ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-    ctx.fillStyle = "black";
+    ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
     ctx.fill();
-  }
-}
+    ctx.closePath();
+  });
 
-function createParticles() {
-  for (let i = 0; i < particleCount; i++) {
-    const x = Math.random() * canvas.width;
-    const y = Math.random() * canvas.height;
-    const speedX = (Math.random() - 0.5) * maxSpeed;
-    const speedY = (Math.random() - 0.5) * maxSpeed;
-    particles.push(new Particle(x, y, speedX, speedY));
-  }
-}
-
-function updateParticles() {
-  for (let i = 0; i < particles.length; i++) {
-    particles[i].update();
-  }
-}
-
-function drawParticles() {
-  for (let i = 0; i < particles.length; i++) {
-    particles[i].draw();
-  }
-}
-
-function drawLines() {
+  // Linie między kulkami
   for (let i = 0; i < particles.length; i++) {
     for (let j = i + 1; j < particles.length; j++) {
       const dx = particles[i].x - particles[j].x;
@@ -72,33 +91,38 @@ function drawLines() {
         ctx.beginPath();
         ctx.moveTo(particles[i].x, particles[i].y);
         ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.strokeStyle = "grey";
         ctx.stroke();
+        ctx.closePath();
       }
     }
   }
-}
 
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  updateParticles();
-  drawLines();
-  drawParticles();
   requestAnimationFrame(animate);
 }
 
-createParticles();
-animate();
+let mouseX, mouseY;
 
-const startButton = document.createElement("button");
-startButton.textContent = "Start";
-startButton.addEventListener("click", animate);
-document.body.appendChild(startButton);
-
-const resetButton = document.createElement("button");
-resetButton.textContent = "Reset";
-resetButton.addEventListener("click", () => {
-  particles.length = 0;
-  createParticles();
+canvas.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX - canvas.getBoundingClientRect().left;
+  mouseY = e.clientY - canvas.getBoundingClientRect().top;
 });
-document.body.appendChild(resetButton);
+
+canvas.addEventListener("click", (e) => {
+  particles.forEach((particle, index) => {
+    const dx = particle.x - mouseX;
+    const dy = particle.y - mouseY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance < particle.radius) {
+      // Usuwanie i mnożenie kuleczek
+      particles.splice(index, 1);
+      particles.push(new Particle(particle.x, particle.y, 5));
+      particles.push(new Particle(particle.x, particle.y, 5));
+    }
+  });
+});
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});

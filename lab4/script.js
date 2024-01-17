@@ -47,6 +47,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const tagsElement = document.createElement("div");
     tagsElement.textContent = "Tagi: " + (note.tags || []).join(", ");
 
+    const dateElement = document.createElement("div");
+    const time = new Date();
+    dateElement.textContent =
+      "Data: " +
+      time.getDate() +
+      "/" +
+      (time.getMonth() + 1) +
+      "/" +
+      time.getFullYear();
+
     const actionsElement = document.createElement("div");
     actionsElement.classList.add("note-actions");
 
@@ -68,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
     noteElement.appendChild(titleElement);
     noteElement.appendChild(contentElement);
     noteElement.appendChild(tagsElement);
+    noteElement.appendChild(dateElement);
     noteElement.appendChild(actionsElement);
 
     return noteElement;

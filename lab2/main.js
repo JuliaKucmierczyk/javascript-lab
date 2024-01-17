@@ -1,3 +1,5 @@
+// PAUZOWANIE JEST JAKO HOVER
+
 const leftArrow = document.querySelector(".previous");
 const rightArrow = document.querySelector(".next");
 const slider = document.querySelector(".slider");

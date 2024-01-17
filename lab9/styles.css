@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  font-family: "Arial", sans-serif;
+}
+
+canvas {
+  display: block;
+}
+
+button {
+  position: absolute;
+  top: 20px;
+  padding: 10px 20px;
+  background-color: tomato;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.reset {
+  right: 1rem;
+}
+
+.start {
+  left: 1rem;
+}
+
+button:hover {
+  background-color: rgb(255, 136, 114);
+}

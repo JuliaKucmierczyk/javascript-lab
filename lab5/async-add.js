@@ -1,4 +1,4 @@
-// Funkcja wykonująca operację asynchroniczną (dodawanie)
+// 1. Funkcja wykonująca operację asynchroniczną (dodawanie)
 function asyncAdd(a, b) {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -7,7 +7,7 @@ function asyncAdd(a, b) {
   });
 }
 
-// Funkcja dodająca dowolną ilość liczb asynchronicznie
+// 2. Funkcja dodająca dowolną ilość liczb asynchronicznie
 async function addNumbersAsync(...numbers) {
   let sum = 0;
 
@@ -18,7 +18,7 @@ async function addNumbersAsync(...numbers) {
   return sum;
 }
 
-// Funkcja mierząca czas wykonania
+// 3. Funkcja mierząca czas wykonania
 async function measureExecutionTimeAsync(func, ...args) {
   const startTime = performance.now();
   const result = await func(...args);
@@ -28,7 +28,7 @@ async function measureExecutionTimeAsync(func, ...args) {
   return { result, executionTime };
 }
 
-// Testowanie dla zbioru danych o wielkości 100 elementów
+// 4. Testowanie dla zbioru danych o wielkości 100 elementów
 const data = Array.from({ length: 100 }, (_, index) => index + 1);
 
 measureExecutionTimeAsync(addNumbersAsync, ...data)
