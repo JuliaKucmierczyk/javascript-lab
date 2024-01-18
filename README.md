@@ -2,7 +2,7 @@
 
 - lab1 - rozgrzewka - normal
 - lab2 - slider - dasięludziompokazać
-- lab3 - drumkit - POPRAWIĆ
+- lab3 - drumkit - panda4
 - lab4 - note pocket - elf (jeśli Ci się chce bawić to popraw)
 - lab5 - async add - zrobione
 - lab6 - jedna dziurka - (można dopisać)

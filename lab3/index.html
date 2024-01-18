@@ -15,6 +15,20 @@
   <body>
     <section>
       <div class="container">
+        <div class="metronom-controls tracks">
+          <label for="bpm"
+            >Metronom <span>BPM</span>
+            <input
+              class="metronome"
+              type="number"
+              id="bpm"
+              value="120"
+              min="1"
+              max="300"
+            /><button class="metronome" id="metronomeOn">On</button>
+            <button class="metronome" id="metronomeOff">Off</button></label
+          >
+        </div>
         <div class="controls">
           <button class="blue" id="record">Record</button>
           <button class="tomato" id="stop">Stop</button>
@@ -29,8 +43,8 @@
               data-track="1"
               checked
             />
-            Track 1</label
-          >
+            Track 1
+          </label>
           <label
             ><input type="checkbox" class="trackCheckbox" data-track="2" />
             Track 2</label
