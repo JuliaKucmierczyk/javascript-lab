@@ -22,7 +22,6 @@ const displayWeather = (data) => {
       <img src="${iconUrl}" alt="Pogoda">
       <p>Temperatura: ${data.main.temp}°C</p>
       <p>Wilgotność: ${data.main.humidity}%</p>
-      <!-- Tutaj możesz dodać więcej informacji o pogodzie -->
   `;
   weatherContainer.appendChild(weatherCard);
 };
